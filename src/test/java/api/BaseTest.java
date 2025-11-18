@@ -1,6 +1,7 @@
 package api;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
 
@@ -14,7 +15,7 @@ public class BaseTest {
 
         request = RestAssured
                 .given()
-                .contentType("application/json")
-                .accept("application/json");
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON);
     }
 }

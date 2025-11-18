@@ -20,7 +20,7 @@ public class StudentTestsWithPojo extends BaseTest{
         Student createdStudent =
                 given()
                         .spec(request)
-                        .body(requestStudent)
+                        .body(requestStudent) // POJO -> JSON
 
                         .when()
                         .post("/students")
