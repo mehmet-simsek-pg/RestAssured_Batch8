@@ -1,17 +1,23 @@
 package api;
 
 import api.pojo.Student;
+import io.qameta.allure.*;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
+@Epic("Student Management API")
+@Feature("Student CRUD Operations") // CRUD -> post, get, update, delete methodlarina verilen genel isim
 public class StudentTestsWithPojo extends BaseTest{
 
     private int studentID;
 
     @Test(priority = 1, description = "Create a new student")
+    @Story("Create Student")
+    @Description("Create a new student")
+    @Severity(SeverityLevel.CRITICAL)
     public void createStudent() {
 
         Student requestStudent =
@@ -39,6 +45,9 @@ public class StudentTestsWithPojo extends BaseTest{
     }
 
     @Test(priority = 2, description = "Get all students info")
+    @Story("Get All Students")
+    @Description("Get all students info")
+    @Severity(SeverityLevel.NORMAL)
     public void getAllStudents() {
 
         Student[] students =
@@ -61,6 +70,8 @@ public class StudentTestsWithPojo extends BaseTest{
     }
 
     @Test(priority = 3, description = "Get student by id")
+    @Story("Get Student By Id")
+    @Description("Get student info by id")
     public void getStudentById() {
 
         Student student =
@@ -79,6 +90,8 @@ public class StudentTestsWithPojo extends BaseTest{
     }
 
     @Test(priority = 4, description = "Update student")
+    @Story("Update student")
+    @Description("Update existing student info")
     public void updateStudent() {
 
         Student updateRequest =
@@ -101,6 +114,8 @@ public class StudentTestsWithPojo extends BaseTest{
     }
 
     @Test(priority = 5, description = "Delete existing student")
+    @Story("Delete student")
+    @Description("Delete existing student by id")
     public void deleteStudent() {
         /**
          * Eger response u bir nesneye atayacaksam response ya da buradaki gibi student
@@ -116,5 +131,4 @@ public class StudentTestsWithPojo extends BaseTest{
                 .then()
                 .statusCode(204);
     }
-
 }
