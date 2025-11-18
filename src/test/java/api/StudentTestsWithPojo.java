@@ -37,4 +37,68 @@ public class StudentTestsWithPojo extends BaseTest{
         studentID = createdStudent.getId(); // path response a ait, burada yeni student
         // create ettigimiz icin direkt getId ile id sine ulasilabiliyor
     }
+
+    @Test(priority = 2, description = "Get all students info")
+    public void getAllStudents() {
+
+        Student[] students =
+                given()
+                        .spec(request)
+
+                        .when()
+                        .get("/students")
+
+                        .then()
+                        .statusCode(200)
+                        .extract()
+                        .as(Student[].class);
+
+
+        System.out.println("Toplam ögrenci sayisi: " + students.length);
+        for(Student student: students) {
+            System.out.println(student);
+        }
+    }
+
+    @Test(priority = 3, description = "Get student by id")
+    public void getStudentById() {
+
+        Student student =
+                given()
+                        .spec(request)
+
+                        .when()
+                        .get("/students/{id}", studentID)
+
+                        .then()
+                        .statusCode(200)
+                        .extract()
+                        .as(Student.class);
+
+        System.out.println(student);
+    }
+
+    @Test(priority = 4, description = "Update student")
+    public void updateStudent() {
+
+        Student updateRequest =
+                new Student("Bariss", "Updated", "updated@example.com");
+
+        Student updatedStudent =
+                given()
+                        .spec(request)
+                        .body(updateRequest)
+
+                        .when()
+                        .put("/students/{id}",studentID)
+
+                        .then()
+                        .statusCode(200)
+                        .extract()
+                        .as(Student.class);
+
+        System.out.println(updatedStudent);
+    }
+
+
 }
