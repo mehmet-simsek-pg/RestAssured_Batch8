@@ -100,5 +100,21 @@ public class StudentTestsWithPojo extends BaseTest{
         System.out.println(updatedStudent);
     }
 
+    @Test(priority = 5, description = "Delete existing student")
+    public void deleteStudent() {
+        /**
+         * Eger response u bir nesneye atayacaksam response ya da buradaki gibi student
+         * extract() ve as() metodlarini kullaniyoruz. Yoksa islemlere direkt olarak given() metoduyla
+         * baslariz. Yani Student ve ya Response a esitlemek zorunlulugu yok hic bir testte.
+         * */
+        given()
+                .spec(request)
+
+                .when()
+                .delete("/students/{id}", studentID)
+
+                .then()
+                .statusCode(204);
+    }
 
 }
