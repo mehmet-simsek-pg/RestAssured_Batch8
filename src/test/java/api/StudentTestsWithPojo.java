@@ -2,12 +2,15 @@ package api;
 
 import api.pojo.Student;
 import io.qameta.allure.*;
+import io.qameta.allure.testng.AllureTestNg;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
+@Listeners({AllureTestNg.class})
 @Epic("Student Management API")
 @Feature("Student CRUD Operations") // CRUD -> post, get, update, delete methodlarina verilen genel isim
 public class StudentTestsWithPojo extends BaseTest{
